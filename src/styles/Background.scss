@@ -1,5 +1,11 @@
 $common-gradient: linear-gradient(
-    355deg,
+    0deg,
     rgba(255, 255, 255, 1) 0%,
     rgba(253, 255, 221, 1) 100%
+);
+
+$button-gradient: linear-gradient(
+    150deg,
+    rgb(47, 0, 255) 0%,
+    rgb(183, 0, 255) 100%
 );

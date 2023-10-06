@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Game.scss";
-import Card from "../../components/Card";
+import Card from "../../components/Card/Card";
 import CardType from "../../types/CardType";
 
 export default function Game() {

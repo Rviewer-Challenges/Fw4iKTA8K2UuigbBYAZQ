@@ -1,9 +1,53 @@
 @import "../../styles/Background.scss";
 
-.home-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-    background: $common-gradient;
+.home {
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        background: $common-gradient;
+    }
+    .title {
+        font-size: 5vw;
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        transform: rotate(-2deg);
+    }
+    .main-button {
+        width: 10%;
+        padding: 20px;
+        border-radius: 10px;
+        background: $button-gradient;
+        .text {
+            color: white;
+            font-size: large;
+            font-weight: bold;
+        }
+    }
+    .main-button:hover {
+        cursor: pointer;
+        .text {
+            color: lightgrey;
+            transition: box-shadow 0.3s ease;
+        }
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        transition: box-shadow 0.3s ease;
+    }
+    .credits {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 50px;
+        padding: 20px;
+        .link {
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-shadow: 2px 2px 4px rgb(255, 145, 0, 0.5);
+        }
+    }
 }

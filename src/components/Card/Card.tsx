@@ -14,8 +14,8 @@ export default function Card(props: CardProps) {
             <img
                 src={
                     props.cardElement.isFlipped
-                        ? require(`../resources/imgs/${props.cardElement.hiddenElement}.png`)
-                        : require("../resources/imgs/react-logo.png")
+                        ? require(`../../resources/imgs/${props.cardElement.hiddenElement}.png`)
+                        : require("../../resources/imgs/react-logo.png")
                 }
                 alt={props.cardElement.id.toString()}
                 style={{ width: 50, margin: 0 }}
