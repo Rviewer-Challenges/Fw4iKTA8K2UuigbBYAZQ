@@ -1,7 +1,7 @@
-import Game from "./pages/Game/Game";
+import Body from "./pages/Routes";
 
 function App() {
-    return <Game />;
+    return <Body />;
 }
 
 export default App;

@@ -1,9 +1,9 @@
 @import "../../styles/Background.scss";
 
-.game-container {
+.home-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: $common-gradient;
     height: 80vh;
+    background: $common-gradient;
 }
