@@ -1,0 +1,51 @@
+@import "../../styles/Background.scss";
+
+.gameover-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: $common-gradient;
+    height: 90vh;
+    border-top: 1px solid rgb(45, 48, 3);
+    .final-title {
+        font-size: 60px;
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        transform: rotate(-2deg);
+        @media screen and (max-width: 600px) {
+            font-size: 40px;
+        }
+    }
+    .final-text {
+        font-size: 20px;
+        margin-top: 10vh;
+        font-weight: bold;
+    }
+    .image-container {
+        display: flex;
+        justify-content: center;
+    }
+    .final-button {
+        margin-top: 5vh;
+        padding: 10px;
+        border-radius: 10px;
+        background: $button-gradient;
+        min-width: 160px;
+        .text {
+            color: white;
+            font-size: medium;
+            font-weight: bold;
+            @media screen and (max-width: 600px) {
+                font-size: medium;
+            }
+        }
+    }
+    .final-button:hover {
+        cursor: pointer;
+        color: lightgray;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        transition: box-shadow 0.3s ease, text-shadow 0.3s ease;
+    }
+}

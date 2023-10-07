@@ -6,11 +6,14 @@ import Card from "../../components/Card/Card";
 import CardType from "../../types/CardType";
 import Counter from "../../components/Counter/Counter";
 import Countdown from "../../components/Countdown/Countdown";
+import GameOver from "../../components/GameOver/GameOver";
 
 export default function Game() {
     const navigate = useNavigate();
     const { difficulty } = useDifficulty();
     const [movements, setMovements] = useState<number>(0);
+    const [isFinished, setIsfinished] = useState<boolean>(false);
+    const [isWon, setIsWon] = useState<boolean>(false);
 
     const [gameCards, setGameCards] = useState<CardType[]>([
         { id: 1, hiddenElement: "a", isFlipped: false, isMatched: false },
@@ -33,7 +36,6 @@ export default function Game() {
     const [flippedCardsContent, setFlippedCardsContent] = useState<string[]>(
         []
     );
-    const [isFinished, setIsfinished] = useState<boolean>(false);
 
     const startGame = (): void => {
         let array: CardType[];
@@ -116,34 +118,16 @@ export default function Game() {
             (element) =>
                 element.isMatched === true && element.isFlipped === true
         );
-        console.log(isCompleted);
-        if (isFinished && !isCompleted) {
-            const timeoutId: NodeJS.Timer = setInterval(() => {
-                alert("¡HAS PERDIDO!");
-                navigate("/");
-                clearInterval(timeoutId);
-            }, 500);
-        }
-        // eslint-disable-next-line
-    }, [isFinished]);
-
-    useEffect(() => {
-        const isCompleted: boolean = gameCards.every(
-            (element) =>
-                element.isMatched === true && element.isFlipped === true
-        );
         if (isCompleted && !isFinished) {
+            setIsWon(true);
             setIsfinished(true);
-            const timeoutId: NodeJS.Timer = setInterval(() => {
-                alert(`¡HAS GANADO! Movimientos: ${movements}`);
-                navigate("/");
-                clearInterval(timeoutId);
-            }, 500);
         }
         // eslint-disable-next-line
     }, [gameCards]);
 
-    return (
+    return isFinished ? (
+        <GameOver isWon={isWon} movements={movements} />
+    ) : (
         <div className="game-container">
             <div className="counters-container">
                 <Counter title="Movements" text={movements.toString()} />
