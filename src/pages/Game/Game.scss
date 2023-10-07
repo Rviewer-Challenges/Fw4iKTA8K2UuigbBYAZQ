@@ -1,18 +1,32 @@
 @import "../../styles/Background.scss";
 
 .game-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
     align-items: center;
     background: $common-gradient;
     height: 80vh;
+    border-top: 1px solid rgb(45, 48, 3);
 }
-
+.counters-container {
+    display: flex;
+    margin: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+.cards-container {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
 .card-container {
     display: flex;
     justify-content: center;
-    flex-basis: calc(20% - 20px);
-    margin: 10px;
+    flex-basis: calc(20% - 10px);
 }
+/*
+.easy-game {
+}
+.medium-game {
+}
+.difficult-game {
+}*/

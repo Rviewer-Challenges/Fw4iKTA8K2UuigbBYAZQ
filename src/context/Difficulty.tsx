@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
 type DifficultyContextType = {
-    difficulty: "Easy" | "Medium" | "Difficult";
+    difficulty: "Easy" | "Medium" | "Difficult" | undefined;
     setDifficulty: (newDifficulty: "Easy" | "Medium" | "Difficult") => void;
 };
 
@@ -14,7 +14,7 @@ export const DifficultyProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
     const [difficulty, setDifficulty] = useState<
         "Easy" | "Medium" | "Difficult"
-    >("Easy");
+    >();
 
     return (
         <DifficultyContext.Provider value={{ difficulty, setDifficulty }}>
@@ -23,8 +23,12 @@ export const DifficultyProvider: React.FC<{ children: React.ReactNode }> = ({
     );
 };
 
-export const useDifficulty = (): DifficultyContextType | undefined => {
+export const useDifficulty = (): DifficultyContextType => {
     const context = useContext(DifficultyContext);
+
+    if (!context) {
+        throw new Error();
+    }
 
     return context;
 };

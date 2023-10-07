@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDifficulty } from "../../context/Difficulty";
 import "./Game.scss";
 import Card from "../../components/Card/Card";
 import CardType from "../../types/CardType";
+import Counter from "../../components/Counter/Counter";
+import Countdown from "../../components/Countdown/Countdown";
 
 export default function Game() {
     const navigate = useNavigate();
-    const context = useDifficulty();
+    const { difficulty } = useDifficulty();
+    const [movements, setMovements] = useState<number>(0);
 
     const [gameCards, setGameCards] = useState<CardType[]>([
         { id: 1, hiddenElement: "a", isFlipped: false, isMatched: false },
@@ -35,10 +38,8 @@ export default function Game() {
     const startGame = (): void => {
         let array: CardType[];
 
-        if (context && context.difficulty === "Easy")
-            array = gameCards.slice(0, 8);
-        else if (context && context.difficulty === "Medium")
-            array = gameCards.slice(0, 12);
+        if (difficulty === "Easy") array = gameCards.slice(0, 8);
+        else if (difficulty === "Medium") array = gameCards.slice(0, 12);
         else array = gameCards;
 
         const duplicatedArray: CardType[] = array.map((card) => ({
@@ -96,6 +97,7 @@ export default function Game() {
         setGameCards(updatedArray);
 
         if (flippedCardsNumber + 1 >= 2) {
+            setMovements(movements + 1);
             setFlippedCardsNumber(0);
             flippedNotMatchedCards(updatedArray);
         } else {
@@ -103,15 +105,27 @@ export default function Game() {
         }
     };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        if (context) {
-            console.log(context);
-
-            setGameCards(gameCards.slice(0, 12));
-            startGame();
-        }
+        if (!difficulty) navigate("/");
+        startGame();
+        // eslint-disable-next-line
     }, []);
+
+    useEffect(() => {
+        const isCompleted: boolean = gameCards.every(
+            (element) =>
+                element.isMatched === true && element.isFlipped === true
+        );
+        console.log(isCompleted);
+        if (isFinished && !isCompleted) {
+            const timeoutId: NodeJS.Timer = setInterval(() => {
+                alert("¡HAS PERDIDO!");
+                navigate("/");
+                clearInterval(timeoutId);
+            }, 500);
+        }
+        // eslint-disable-next-line
+    }, [isFinished]);
 
     useEffect(() => {
         const isCompleted: boolean = gameCards.every(
@@ -121,24 +135,30 @@ export default function Game() {
         if (isCompleted && !isFinished) {
             setIsfinished(true);
             const timeoutId: NodeJS.Timer = setInterval(() => {
-                alert("¡HAS GANADO!");
+                alert(`¡HAS GANADO! Movimientos: ${movements}`);
                 navigate("/");
                 clearInterval(timeoutId);
-            }, 1000);
+            }, 500);
         }
         // eslint-disable-next-line
     }, [gameCards]);
 
     return (
         <div className="game-container">
-            {gameCards.map((element, index) => (
-                <div key={index} className="card-container">
-                    <Card
-                        cardElement={element}
-                        handleClick={(targetCard) => handleFlip(targetCard)}
-                    />
-                </div>
-            ))}
+            <div className="counters-container">
+                <Counter title="Movements" text={movements.toString()} />
+                <Countdown timeIsOver={() => setIsfinished(true)} />
+            </div>
+            <div className="cards-container">
+                {gameCards.map((element, index) => (
+                    <div key={index} className="card-container">
+                        <Card
+                            cardElement={element}
+                            handleClick={(targetCard) => handleFlip(targetCard)}
+                        />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

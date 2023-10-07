@@ -11,12 +11,10 @@
     transform: rotateY(0deg);
     transition: transform 0.2s ease;
 }
-
 .card.flipped {
     transform: rotateY(180deg);
     transition: transform 0.2s ease;
 }
-
 .card:hover {
     cursor: pointer;
     background-color: rgb(119, 70, 168);
