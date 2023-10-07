@@ -8,8 +8,8 @@ export default function Card(props: CardProps) {
     return (
         <button
             id={props.cardElement.id.toString()}
-            className={"card"}
-            onClick={!props.cardElement.isFlipped ? handleClick : () => {}}
+            className={`card ${props.cardElement.isFlipped ? "flipped" : ""}`}
+            onClick={!props.cardElement.isFlipped ? handleClick : undefined}
         >
             <img
                 src={
@@ -18,7 +18,7 @@ export default function Card(props: CardProps) {
                         : require("../../resources/imgs/react-logo.png")
                 }
                 alt={props.cardElement.id.toString()}
-                style={{ width: 50, margin: 0 }}
+                style={{ width: 50, margin: 0, pointerEvents: "none" }}
             />
         </button>
     );

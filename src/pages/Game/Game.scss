@@ -2,8 +2,17 @@
 
 .game-container {
     display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     justify-content: center;
     align-items: center;
     background: $common-gradient;
     height: 80vh;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-basis: calc(20% - 20px);
+    margin: 10px;
 }

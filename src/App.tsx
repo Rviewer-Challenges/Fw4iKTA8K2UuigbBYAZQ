@@ -1,7 +1,12 @@
 import Body from "./pages/Routes";
+import { DifficultyProvider } from "./context/Difficulty";
 
 function App() {
-    return <Body />;
+    return (
+        <DifficultyProvider>
+            <Body />
+        </DifficultyProvider>
+    );
 }
 
 export default App;
