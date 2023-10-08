@@ -1,0 +1,17 @@
+export const arrayGameCards = [
+    { id: 1, hiddenElement: "a", isFlipped: false, isMatched: false },
+    { id: 2, hiddenElement: "b", isFlipped: false, isMatched: false },
+    { id: 3, hiddenElement: "c", isFlipped: false, isMatched: false },
+    { id: 4, hiddenElement: "d", isFlipped: false, isMatched: false },
+    { id: 5, hiddenElement: "e", isFlipped: false, isMatched: false },
+    { id: 6, hiddenElement: "f", isFlipped: false, isMatched: false },
+    { id: 7, hiddenElement: "g", isFlipped: false, isMatched: false },
+    { id: 8, hiddenElement: "h", isFlipped: false, isMatched: false },
+    { id: 9, hiddenElement: "i", isFlipped: false, isMatched: false },
+    { id: 10, hiddenElement: "j", isFlipped: false, isMatched: false },
+    { id: 11, hiddenElement: "k", isFlipped: false, isMatched: false },
+    { id: 12, hiddenElement: "l", isFlipped: false, isMatched: false },
+    { id: 13, hiddenElement: "m", isFlipped: false, isMatched: false },
+    { id: 14, hiddenElement: "n", isFlipped: false, isMatched: false },
+    { id: 15, hiddenElement: "o", isFlipped: false, isMatched: false },
+];
