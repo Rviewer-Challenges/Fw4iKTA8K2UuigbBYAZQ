@@ -115,6 +115,12 @@ export default function Game() {
         <div className="game-container">
             <div className="counters-container">
                 <Counter title="Movements" text={movements.toString()} />
+                <p className="remainingCouples">
+                    Remaining couples:{" "}
+                    {gameCards.filter((element) => element.isMatched === true)
+                        .length / 2}
+                    /{gameCards.length / 2}
+                </p>
                 <Countdown timeIsOver={() => setIsfinished(true)} />
             </div>
             <div className="cards-container">
@@ -130,6 +136,20 @@ export default function Game() {
                     </div>
                 ))}
             </div>
+            <button className="back-button" onClick={() => navigate("/")}>
+                <img
+                    src={require("../../resources/imgs/back.png")}
+                    alt="back"
+                    style={{
+                        width: "50px",
+                        marginBottom: "-12px",
+                        backgroundColor: "white",
+                        borderRadius: "10px",
+                        padding: "2px",
+                    }}
+                    className="arrow"
+                />
+            </button>
         </div>
     );
 }

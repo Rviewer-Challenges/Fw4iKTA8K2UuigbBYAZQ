@@ -11,6 +11,10 @@
     margin: 10px;
     justify-content: space-between;
     align-items: center;
+    .remainingCouples{
+        font-weight: bold;
+        font-size: large;
+    }
 }
 .cards-container {
     justify-content: center;
@@ -31,4 +35,27 @@
 .difficult-game {
     flex-basis: calc(15% - 10px);
     margin-bottom: 0.5%;
+}
+.back-button {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 30px;
+    left: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border: 0px;
+    background-color: rgba(255, 255, 255, 0);
+    .arrow {
+        border: 2px solid black;
+    }
+    .arrow:hover {
+        border: 3px solid black;
+    }
+}
+.back-button:hover {
+    cursor: pointer;
+    color: "grey";
 }
