@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDifficulty } from "../../context/Difficulty";
+import { arrayGameCards } from "../../constants/arrayGameCards";
 import "./Game.scss";
 import Card from "../../components/Card/Card";
 import CardType from "../../types/CardType";
@@ -12,26 +13,9 @@ export default function Game() {
     const navigate = useNavigate();
     const { difficulty } = useDifficulty();
     const [movements, setMovements] = useState<number>(0);
+    const [gameCards, setGameCards] = useState<CardType[]>(arrayGameCards);
     const [isFinished, setIsfinished] = useState<boolean>(false);
     const [isWon, setIsWon] = useState<boolean>(false);
-
-    const [gameCards, setGameCards] = useState<CardType[]>([
-        { id: 1, hiddenElement: "a", isFlipped: false, isMatched: false },
-        { id: 2, hiddenElement: "b", isFlipped: false, isMatched: false },
-        { id: 3, hiddenElement: "c", isFlipped: false, isMatched: false },
-        { id: 4, hiddenElement: "d", isFlipped: false, isMatched: false },
-        { id: 5, hiddenElement: "e", isFlipped: false, isMatched: false },
-        { id: 6, hiddenElement: "f", isFlipped: false, isMatched: false },
-        { id: 7, hiddenElement: "g", isFlipped: false, isMatched: false },
-        { id: 8, hiddenElement: "h", isFlipped: false, isMatched: false },
-        { id: 9, hiddenElement: "i", isFlipped: false, isMatched: false },
-        { id: 10, hiddenElement: "j", isFlipped: false, isMatched: false },
-        { id: 11, hiddenElement: "k", isFlipped: false, isMatched: false },
-        { id: 12, hiddenElement: "l", isFlipped: false, isMatched: false },
-        { id: 13, hiddenElement: "m", isFlipped: false, isMatched: false },
-        { id: 14, hiddenElement: "n", isFlipped: false, isMatched: false },
-        { id: 15, hiddenElement: "o", isFlipped: false, isMatched: false },
-    ]);
     const [flippedCardsNumber, setFlippedCardsNumber] = useState<number>(0);
     const [flippedCardsContent, setFlippedCardsContent] = useState<string[]>(
         []
@@ -68,8 +52,8 @@ export default function Game() {
                         : { ...card, isFlipped: true }
                 )
             );
+            setFlippedCardsContent([]);
         }, 500);
-        setFlippedCardsContent([]);
     };
 
     const handleFlip = (cardId: number): void => {
@@ -135,7 +119,10 @@ export default function Game() {
             </div>
             <div className="cards-container">
                 {gameCards.map((element, index) => (
-                    <div key={index} className="card-container">
+                    <div
+                        key={index}
+                        className={`card-container ${difficulty?.toLowerCase()}-game`}
+                    >
                         <Card
                             cardElement={element}
                             handleClick={(targetCard) => handleFlip(targetCard)}

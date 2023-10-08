@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Counter from "../Counter/Counter";
+import CountdownIcon from "../CountdownIcon/CountdownIcon";
+import "./Countdown.scss";
 
 export default function Countdown(props: { timeIsOver: () => void }) {
     let time: number = 60;
@@ -22,9 +24,14 @@ export default function Countdown(props: { timeIsOver: () => void }) {
     }, []);
 
     return (
-        <Counter
-            title="Time"
-            text={seconds >= 10 ? seconds.toString() : `0${seconds}`}
-        />
+        <>
+            <div className="countdown-icon">
+                <CountdownIcon seconds={seconds} />
+            </div>
+            <Counter
+                title="Time"
+                text={seconds >= 10 ? seconds.toString() : `0${seconds}`}
+            />
+        </>
     );
 }
